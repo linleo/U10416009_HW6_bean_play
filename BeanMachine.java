@@ -133,18 +133,22 @@ public class BeanMachine extends Application
 		primaryStage.setResizable(false); 
 		primaryStage.show();
 		
+		//SecureRandom srand = new SecureRandom();
+		
 		//mouse listener
 		scene.setOnMouseClicked(e -> {
-			Circle ball = new Circle(6, Color.RED);
+			Circle ball = new Circle(6);
+			changeBallColor(ball);
 			pane.getChildren().add(ball);
 			ball.relocate(192, 30);
 			timeline(ball);
 		});
 		
-		//keyborad listener
-		scene.setOnKeyReleased(e -> {
+		//keyboard listener
+		scene.setOnKeyPressed(e -> {
 			if (e.getCode() == KeyCode.SPACE){
-				Circle ball = new Circle(6, Color.RED);
+				Circle ball = new Circle(6);
+				changeBallColor(ball);
 				pane.getChildren().add(ball);
 				ball.relocate(192, 30);
 				timeline(ball);
@@ -161,7 +165,7 @@ public class BeanMachine extends Application
 		animation.play();
 	}
 	
-	//the method for ball fall
+	//a method for ball fall
 	void ballFall(Circle ball)
 	{
 		SecureRandom srand = new SecureRandom();
@@ -187,5 +191,28 @@ public class BeanMachine extends Application
 			else
 				ball.relocate(x, y);
 		}
+	}
+	
+	//a method to change ball color
+	void changeBallColor(Circle ball)
+	{
+		SecureRandom srand = new SecureRandom();
+		int color = srand.nextInt(8);
+		if(color == 0)
+			ball.setFill(Color.RED);
+		else if(color == 1)
+			ball.setFill(Color.BLUE);
+		else if(color == 2)
+			ball.setFill(Color.BLACK);
+		else if(color == 3)
+			ball.setFill(Color.GREEN);
+		else if(color == 4)
+			ball.setFill(Color.YELLOW);
+		else if(color == 5)
+			ball.setFill(Color.PINK);
+		else if(color == 6)
+			ball.setFill(Color.PURPLE);
+		else if(color == 7)
+			ball.setFill(Color.SKYBLUE);
 	}
 }
